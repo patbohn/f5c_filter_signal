@@ -517,26 +517,24 @@ void event_single(core_t* core,db_t* db, int32_t i) {
         float digitisation = db->f5[i]->digitisation;
         float offset = db->f5[i]->offset;
         int32_t nsample = db->f5[i]->nsample;
-        float curr_signal = 0;
+        
 
         // convert to pA
         float raw_unit = range / digitisation;
         for (int32_t j = 0; j < nsample; j++) {
-            curr_signal = (rawptr[j] + offset) * raw_unit;
-            if (core->opt.flag & FILTERSIGNAL){
-                if (curr_signal < 0 || curr_signal > 200){
+            rawptr[j] = (rawptr[j+1] + offset) * raw_unit;
+        }
+        //optional signal filtering step
+        if (core->opt.flag & FILTERSIGNAL){
+            for (int32_t j = 0; j < nsample; j++) {
+                if (rawptr[j] < 0 || rawptr[j] > 200){
                     //when first signal replace with next, otherwise with previous
                     if (j == 0){
-                        rawptr[j] = (rawptr[j+1] + offset) * raw_unit;
+                        rawptr[j] = rawptr[j+1];
                     }else{
                         rawptr[j] = rawptr[j-1];
-                    };
-                }else{
-                    rawptr[j] = curr_signal;
+                    }
                 }
-            }
-            else{
-                rawptr[j] = curr_signal;
             }
         }
 
