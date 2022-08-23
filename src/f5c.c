@@ -523,7 +523,7 @@ void event_single(core_t* core,db_t* db, int32_t i) {
         float raw_unit = range / digitisation;
         for (int32_t j = 0; j < nsample; j++) {
             curr_signal = (rawptr[j] + offset) * raw_unit;
-            if (FILTERSIGNAL){
+            if (core->opt.flag & FILTERSIGNAL){
                 if (curr_signal < 0 || curr_signal > 200){
                     //when first signal replace with next, otherwise with previous
                     if (j == 0){
