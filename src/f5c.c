@@ -517,7 +517,8 @@ void event_single(core_t* core,db_t* db, int32_t i) {
         float digitisation = db->f5[i]->digitisation;
         float offset = db->f5[i]->offset;
         int32_t nsample = db->f5[i]->nsample;
-        float curr_signal 0;
+        float curr_signal = 0;
+
         // convert to pA
         float raw_unit = range / digitisation;
         for (int32_t j = 0; j < nsample; j++) {
