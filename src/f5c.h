@@ -54,6 +54,7 @@
 #define F5C_PRINT_SIGNAL_INDEX 0x8000 //write the raw signal start and end index values for the event to the tsv output (eventalign only)
 #define F5C_RD_SLOW5 0x10000 //read from a slow5 file
 #define F5C_COLLAPSE_EVENTS 0x20000 //collapse events
+#define FILTERSIGNAL 0x40000 //filter raw signal <0 or >200 (replace with previous/if not possible, with following)
 
 /*************************************************************
  * flags for a read status (related to db_t->read_stat_flag) *
@@ -67,6 +68,7 @@
 /*******************************
  * other hard coded parameters *
  *******************************/
+
 
 //CPU thread scheduling options for multithreading framework for processing
 #define WORK_STEAL 1 //simple work stealing enabled or not (no work stealing mean no load balancing)

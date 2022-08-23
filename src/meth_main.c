@@ -102,6 +102,7 @@ static struct option long_options[] = {
     {"slow5",required_argument,0,0},               //43 read from a slow5 file
     {"min-recalib-events",required_argument,0,0},  //44 minimum number of events to recalibrate
     {"collapse-events",no_argument,0,0},           //45 collapse events that stays on the same reference k-mer
+    {"filter-signal",no_argument,0,0},             //46 filter raw signal below 0 or above 200 (reventalign only, eplace with previous if possible, else with latter)
     {0, 0, 0, 0}};
 
 
@@ -426,6 +427,12 @@ int meth_main(int argc, char* argv[], int8_t mode) {
             }
             WARNING("%s", "Option --collapse-events is experimental. Exercise caution.");
             yes_or_no(&opt, F5C_COLLAPSE_EVENTS, longindex, "yes", 1);
+        } else if (c == 0 && longindex == 46){//filter raw signal
+            if(mode!=1){
+                ERROR("%s","Option --filter-signal is available only in eventalign");
+                exit(EXIT_FAILURE);
+            }
+            yes_or_no(&opt, FILTERSIGNAL, longindex, "yes", 1);
         }
 
     }
