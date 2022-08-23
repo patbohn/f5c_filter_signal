@@ -517,12 +517,11 @@ void event_single(core_t* core,db_t* db, int32_t i) {
         float digitisation = db->f5[i]->digitisation;
         float offset = db->f5[i]->offset;
         int32_t nsample = db->f5[i]->nsample;
-        
 
         // convert to pA
         float raw_unit = range / digitisation;
         for (int32_t j = 0; j < nsample; j++) {
-            rawptr[j] = (rawptr[j+1] + offset) * raw_unit;
+            rawptr[j] = (rawptr[j] + offset) * raw_unit;
         }
         //optional signal filtering step
         if (core->opt.flag & FILTERSIGNAL){

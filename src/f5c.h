@@ -69,7 +69,6 @@
  * other hard coded parameters *
  *******************************/
 
-
 //CPU thread scheduling options for multithreading framework for processing
 #define WORK_STEAL 1 //simple work stealing enabled or not (no work stealing mean no load balancing)
 #define STEAL_THRESH 1 //stealing threshold for the CPU only sections
