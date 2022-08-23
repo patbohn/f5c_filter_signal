@@ -527,12 +527,17 @@ void event_single(core_t* core,db_t* db, int32_t i) {
         //optional signal filtering step
         if (core->opt.flag & FILTERSIGNAL){
             for (int32_t j = 0; j < nsample; j++) {
-                if (rawptr[j] < 0 || rawptr[j] > 200){
+                if ((rawptr[j] < 0) || (rawptr[j] > 200)){
                     //when first signal replace with next, otherwise with previous
-                    if (j == 0){
-                        rawptr[j] = rawptr[j+1];
-                    }else{
+                    if (j > 0){
                         rawptr[j] = rawptr[j-1];
+                    }else{
+                        for (int32_t k = 0; k < nsample; k++){
+                            if ((rawptr[k] > 0) && (rawptr[k] < 200)){
+                                rawptr[j] = rawptr[k]
+                                break
+                            }
+                        }
                     }
                 }
             }
