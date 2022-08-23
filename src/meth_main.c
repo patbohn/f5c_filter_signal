@@ -501,6 +501,7 @@ int meth_main(int argc, char* argv[], int8_t mode) {
         fprintf(fp_help,"   --collapse-events          collapse events that stays on the same reference k-mer\n");
     }
         fprintf(fp_help,"   --min-recalib-events INT   minimum number of events to recalbrate (decrease if your reads are very short and could not calibrate) [%d]\n",opt.min_num_events_to_rescale);
+        fprintf(fp_help,"   --filter-signal            filter signal below 0 and above 200 pA (replaces with previous signal\n");
 
 #ifdef HAVE_CUDA
         fprintf(fp_help,"   --cuda-mem-frac FLOAT      Fraction of free GPU memory to allocate [0.9 (0.7 for tegra)]\n");
