@@ -533,8 +533,8 @@ void event_single(core_t* core,db_t* db, int32_t i) {
                     }else{
                         for (int32_t k = 0; k < nsample; k++){
                             if ((rawptr[k] > 0) && (rawptr[k] < 200)){
-                                rawptr[j] = rawptr[k]
-                                break
+                                rawptr[j] = rawptr[k];
+                                break;
                             }
                         }
                     }
