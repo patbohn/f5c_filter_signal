@@ -1,3 +1,9 @@
+## Changes by me:
+- added --filter-signal option that removes (overwrites) signal outside of 0-200 pA with previous (in edge-cases with the next that's in range), reimplementing the edit of awjga for PORE-cupine
+
+
+
+
 # f5c
 
 An optimised re-implementation of the *index*, *call-methylation* and *eventalign* modules in [Nanopolish](https://github.com/jts/nanopolish). Given a set of basecalled Nanopore reads and the raw signals, *f5c call-methylation* detects the methylated cytosine and *f5c eventalign* aligns raw nanopore signals (events) to the reference k-mers. *f5c* can optionally utilise NVIDIA graphics cards for acceleration.
